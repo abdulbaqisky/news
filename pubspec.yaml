@@ -32,7 +32,8 @@ dependencies:
   firebase_core: ^1.5.0
   # downgrade image picker
   #image_picker: ^0.8.3+2
-  image_picker: ^0.6.3+4
+  #image_picker: ^0.6.3+4
+  image_picker: ^0.7.5
   firebase_storage: ^10.0.2
   path_provider: ^2.0.2
 

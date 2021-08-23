@@ -1,11 +1,11 @@
 import 'dart:io';
 import 'package:firebase_storage/firebase_storage.dart';
-import 'package:image_picker/image_picker.dart';
 /*import 'package:news/FirebaseApi.dart';
 import 'package:path/path.dart' as path;*/
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:news/upload.dart';
 
 FirebaseFirestore firestore = FirebaseFirestore.instance;
@@ -25,16 +25,21 @@ class _PostNewsState extends State<PostNews> {
   String body = "";
 
   Upload upload = new Upload();
+  ImagePicker picker = ImagePicker();
 
   File? selectedImage;
   bool _isLoading = false;
   var image;
 
   Future getImage() async {
-    image = await ImagePicker.pickImage(source: ImageSource.gallery);
+    final image = await picker.getImage(source: ImageSource.gallery);
 
     setState(() {
-      selectedImage = image;
+      if (image != null) {
+        selectedImage = File(image.path);
+      } else {
+        print('No image selected.');
+      }
     });
   }
 
