@@ -6,4 +6,8 @@ class Upload {
       print(e);
     });
   }
+
+  getData() async {
+    return FirebaseFirestore.instance.collection("news").snapshots();
+  }
 }
